@@ -1,0 +1,42 @@
+@use '../custom' as *;
+
+.btn-cart{
+    position: relative;
+    background-color: $primary;
+    width: 52px;
+    height: 52px;
+    border: none;
+    border-radius: 10px;
+    padding: .5rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: all 400ms ease-in-out;
+    span{
+        position: absolute;
+        display: flex;
+        i{
+            color:$black;
+            padding: 1px;
+            line-height:0;
+            font-size: 20px;
+            transition: all 300ms ease-in-out;
+        }
+        .fa-arrow-right{
+            font-size: 12px;
+        }
+    }
+}
+.btn-cart:hover {
+    i{
+        color:$gray-400;
+    }
+}
+
+.btn-price{
+    width: 15%;
+    border: none;
+    background: rgba(0, 0, 0, 0.7);
+    box-shadow: $box-shadow-2;
+
+    font-size: 0.8em;
+}

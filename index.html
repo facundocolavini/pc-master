@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC MASTER</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    <div class="container ">
+        <nav class="row  nav  pr-0 pl-0">
+            <a class=" col-md-4 p-0" href="#"><img src="assets/images/brand.png" alt="logo image"></a>
+            <div class="bar-search col-md-7 ">
+                <span class="icon-search"><i class="fas fa-search"></i></span>
+                <input class="input-search " type="search" placeholder="Buscar.."> </input>
+            </div>
+            <button class="btn-cart col-md-0" type="button"><span><i class="fas fa-cart-arrow-down"></i> <i class="fas fa-arrow-right"></i></span> </button>
+        </nav>
+        <main class="main gap-3 row row">
+            <h1 class="title-main">PRODUCTOS</h1>
+            <aside class="filter col-md-3"> 
+                <form action="#" class="filter-form">
+                    <fieldset  class="filter-fieldset">
+                        <legend class="filter-legend ">
+                            <div class="filter-title">
+                                <span>Motherboards</span>
+                            </div>    
+                        </legend>
+                        <ul class="filter-list">
+                            <li class="filter-item filter-item--show">
+                                <input class="filter-chkbox" type="checkbox" id="1" type="value">
+                                <label class="filter-label" for="1">AMD Chipset</label>
+                            </li>
+                            <li class="filter-item filter-item--show">
+                                <input class="filter-chkbox" type="checkbox" id="2" type="value">
+                                <label class="filter-label" for="2">Intel Chipset</label>
+                            </li>
+                        </ul>
+                    </fieldset>
+                    <fieldset class="filter-fieldset">
+                        <legend class="filter-legend">
+                            <div class="filter-title">
+                                <span>Gráficas</span>
+                            </div>    
+                        </legend>
+                        <ul class="filter-list ">
+                            <li class="filter-item ">
+                                <input class="filter-chkbox" type="checkbox" id="3" type="value">
+                                <label class="filter-label" for="3">AMD GPU</label>
+                            </li>
+                            <li class="filter-item filter-item--show">
+                                <input class="filter-chkbox" type="checkbox" id="4" type="value">
+                                <label class="filter-label" for="4">NVIDIA GPU</label>
+                            </li>
+
+                        </ul>
+                    </fieldset>
+                    <fieldset  class="filter-fieldset">
+                        <legend class="filter-legend">
+                            <div class="filter-title">
+                                <span>Procesadores</span>
+                            </div>    
+                        </legend>
+                        <ul class="filter-list ">
+                            <li class="filter-item filter-item--show">
+                                <input class="filter-chkbox" type="checkbox" id="5" name="checkbox" type="value">
+                                <label class="filter-label" for="5">AMD</label>
+                            </li>
+                            <li class="filter-item filter-item--show">
+                                <input class="filter-chkbox" type="checkbox" id="6" name="checkbox" type="value">
+                                <label class="filter-label" for="6">Intel</label>
+                            </li>
+                        </ul>
+                    </fieldset>
+                    <fieldset class="filter-fieldset">
+                        <legend class="filter-legend ">
+                            <div class="filter-title">
+                                <span>Ram</span>
+                            </div>    
+                        </legend>
+                        <ul class="filter-list ">
+                            <li class="filter-item filter-item--show">
+                                <input class="filter-chkbox" type="checkbox" id="7" type="value">
+                                <label class="filter-label" for="7">DDR4 8GB</label>
+                            </li>
+                            <li class="filter-item filter-item--show">
+                                <input class="filter-chkbox" type="checkbox" id="8" type="value">
+                                <label class="filter-label" for="8">DDR4 16GB</label>
+                            </li>
+                        </ul>
+                    </fieldset>
+                    <fieldset class="filter-fieldset">
+                        <legend>
+                            <div class="filter-title ">
+                                <span>Precio</span>
+                                <div class="controller-price">
+                                    <input class="input-price--min" type="text" placeholder="Mínimo">
+                                    -
+                                    <input class="input-price--max" type="text" placeholder="Máximo">
+                                    <button class="btn-price" type="button"><span><i class="fas fa-chevron-right"></i></span> </button>
+                                </div>
+                            </div>    
+                        </legend>
+
+                    </fieldset>
+                    
+                </form>
+            </aside>
+            <section class="products col-md-8 ">
+                <div class="container-grid">
+                    <div id="card-product" class="product">
+
+                    </div>
+
+                </div>
+            </section>
+        </main>
+    </div>
+   
+    <script src="js/main.js"></script>
+    <script src="js/bootstrap.bundle.js"></script>
+</body>
+</html>

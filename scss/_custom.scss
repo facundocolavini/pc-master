@@ -1,0 +1,33 @@
+
+// Color system
+
+//White and gray colors
+$white:    #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #E2E2E2 !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: rgb(52, 58, 64 ,.4) !default;
+$gray-900: #212529 !default;
+$black:    #000 !default;
+$primary: #B90A0A;
+$secondary:#711515;
+$gradient-primary:linear-gradient(180deg, #B90A0A 0%, #B10909 0.01%, #000000 100%);
+$gradient-secondary:linear-gradient(180deg, #B90A0A 0%, #000000 100%);
+//Fonts
+$fontFamily:'Jura';
+
+//Border
+$border-1:$secondary 2px solid;
+
+$enable-rounded:false;
+
+//Effects
+$box-shadow-1: 1px 4px 4px rgba(0, 0, 0, 0.25);
+$box-shadow-2: 4px 4px 4px rgba(0, 0, 0, 0.25);
+
+//Import Bootstrap5 
+@import '../node_modules/bootstrap/scss/bootstrap.scss';

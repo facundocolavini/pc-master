@@ -1,0 +1,149 @@
+
+@keyframes rotateIconDown{
+    0%{
+        transform: rotate(180deg);
+    }
+    10%{
+        transform: rotate(160deg);
+    }
+    20%{
+        transform: rotate(140deg);
+    }
+    30%{
+        transform: rotate(120deg);
+    }
+    40%{
+        transform: rotate(110deg);
+    }
+    50%{
+        transform: rotate(100deg);
+    }
+    60%{
+        transform: rotate(80deg);
+    }
+    70%{
+        transform: rotate(65deg);
+    }
+    80%{
+        transform: rotate(45deg);
+    }
+    90%{
+        transform: rotate(25deg);
+    }
+    100%{
+        transform: rotate(0);
+    }
+}
+
+@keyframes rotateIconUp{
+    0%{
+        transform: rotate(180deg);
+    }
+    10%{
+        transform: rotate(200deg);
+    }
+    20%{
+        transform: rotate(220deg);
+    }
+    30%{
+        transform: rotate(240deg);
+    }
+    40%{
+        transform: rotate(260deg);
+    }
+    50%{
+        transform: rotate(280deg);
+    }
+    60%{
+        transform: rotate(290deg);
+    }
+    70%{
+        transform: rotate(300deg);
+    }
+    80%{
+        transform: rotate(320deg);
+    }
+    90%{
+        transform: rotate(340deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+
+@keyframes showListDown{
+    10%{
+        max-height: 10px;
+        
+    }
+    20%{
+        max-height: 20px;
+        
+    }
+    30%{
+        max-height: 30px;   
+    }
+    40%{
+        max-height: 40px;
+        
+    }
+    50%{
+        max-height: 50px;
+        
+    }
+    60%{
+        max-height: 60px;
+    }
+    70%{
+        max-height: 70px;
+    }
+    80%{
+        max-height: 80px;
+    }
+    90%{
+        max-height: 110px;
+    }
+    100%{
+        max-height: fit-content;
+    }
+}
+
+@keyframes showListUp{
+    10%{
+        max-height: fit-content;
+        
+    }
+    20%{
+        max-height: 90px;
+        
+    }
+    30%{
+        max-height: 80px;   
+    }
+    40%{
+        max-height: 70px;
+        
+    }
+    50%{
+        max-height: 60px;
+        
+    }
+    60%{
+        max-height: 50px;
+    }
+    70%{
+        max-height: 40px;
+    }
+    80%{
+        max-height: 30px;
+    }
+    90%{
+        max-height:20px;
+    }
+    100%{
+        
+     max-height: 0;
+      
+    }
+}

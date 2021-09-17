@@ -1,0 +1,18 @@
+
+//Import  the custom bootstrap css
+@use 'custom';
+@use 'fontawesome';
+
+//Import the components
+@use 'components/animations';
+@use 'components/buttons';
+@use 'components/search';
+@use 'components/mixins';
+@use 'components/typography';
+
+//Import the sections 
+@use 'sections/shop';
+@use 'sections/navbar';
+@use 'sections/main';
+@use 'sections/shopping-cart';
+
