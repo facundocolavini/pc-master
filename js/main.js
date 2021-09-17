@@ -36,6 +36,9 @@ console.log(legends,'legend')
             setTimeout(()=> {
                 t.classList.remove("filter-legend--down");
                 lists[i].classList.remove("filter-list--down");
+                t.classList.add("filter-legend--up");
+                lists[i].classList.add("filter-list--up");
+
             }
             
             ,30);

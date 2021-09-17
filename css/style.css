@@ -17157,6 +17157,10 @@ body {
   justify-content: space-evenly;
 }
 
+@font-face {
+  font-family: "Jura";
+  src: url("../../assets/fonts/Jura-VariableFont_wght.ttf");
+}
 .main {
   margin-top: 200px;
   scroll-behavior: smooth;
@@ -17218,10 +17222,10 @@ body {
   padding: 20px 0;
   content: "\f077";
   color: #000;
-  animation-name: rotateIconUp;
-  transform: translateY(-50);
-  animation-duration: 0.3s;
-  transition: 0.3s;
+  /*     animation-name: rotateIconUp;
+      transform: translateY(-50);
+      animation-duration: 0.3s;
+      transition: 0.3s; */
 }
 
 .filter-legend--up::after {

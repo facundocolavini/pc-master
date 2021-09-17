@@ -1,6 +1,11 @@
 @use '../custom' as *;
 @use '../components/animations' as *;
 @use '../components/typography' as *;
+
+@font-face{
+    font-family:'Jura';
+    src:url('../../assets/fonts/Jura-VariableFont_wght.ttf');
+}
 .main{
     margin-top: 200px;
     scroll-behavior: smooth;
@@ -59,10 +64,10 @@
     padding: 20px 0;
     content:"\f077";
     color:$black;
-    animation-name: rotateIconUp;
+/*     animation-name: rotateIconUp;
     transform: translateY(-50);
     animation-duration: 0.3s;
-    transition: 0.3s;
+    transition: 0.3s; */
 }
 .filter-legend--up::after{//Agregar con js
     position: absolute;
