@@ -1,6 +1,6 @@
 @use '../custom' as *;
 @use '../components/animations' as *;
-
+@use '../components/typography' as *;
 .main{
     margin-top: 200px;
     scroll-behavior: smooth;
