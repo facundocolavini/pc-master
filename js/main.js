@@ -108,14 +108,20 @@ products.push(new Stock(8,"PRODUCTO 8","graphics",30000,5,"assets/images/GEFORCE
     /* Buscador de productos */
     function searchProduct(){
         searchBar.addEventListener('keyup',(e)=>{
-            const searchString = e.target.value;
+
+            const searchString = e.target.value.toUpperCase();
              const searchProd= products.filter((prod)=>{
                 return (
                     prod.name.includes(searchString) 
                 )
        
             })
-            showAllProducts(searchProd);
+            if(searchString !==null){
+                showAllProducts(searchProd);
+            }else{
+                showAllProducts(products);
+            }
+           
             console.log(searchProd,'busqueda');
         })
     }
