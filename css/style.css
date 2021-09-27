@@ -17166,7 +17166,7 @@ body {
   scroll-behavior: smooth;
 }
 
-.title, .filter-title, .title-main {
+.title, .filter-title--price, .filter-title, .title-main {
   font-family: "Jura";
   font-style: normal;
   font-weight: normal;
@@ -17269,7 +17269,6 @@ body {
 
 .filter-list--up {
   position: relative;
-  scroll-behavior: smooth;
   animation-name: showListUp;
   animation-duration: 0.3s;
 }
@@ -17327,8 +17326,10 @@ body {
 }
 
 .products {
-  display: flex;
+  display: grid;
   justify-content: center;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
 }
 
 .container-grid {
@@ -17338,8 +17339,8 @@ body {
 
 .product {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 5px;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
   padding: 0;
   margin: 0;
   margin: 0 1px 0 1px;
@@ -17374,13 +17375,13 @@ body {
 }
 
 .input-price--min {
-  justify-content: space-a;
   width: 35%;
   background: rgba(0, 0, 0, 0.7);
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   border: none;
   font-size: 0.8em;
   color: #E2E2E2;
+  outline: none;
 }
 
 .input-price--max {
@@ -17389,6 +17390,7 @@ body {
   font-size: 0.8em;
   color: #E2E2E2;
   border: none;
+  outline: none;
   width: 38%;
 }
 
