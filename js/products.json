@@ -1,0 +1,75 @@
+    [
+        {
+            "id": 1,
+            "name": "PRODUCTO 1",
+            "category":"motherboard",
+            "price": 500000,
+            "quantity": 10,
+            "image": "assets/images/X99A Godlike Gamingcarbon.png",
+            "model": "INTEL-CHIPSET"
+        },
+        {
+            "id": 2,
+            "name":"PRODUCTO 2",
+            "category":"motherboard",
+            "price":230000,
+            "quantity":20,
+            "image":"assets/images/X99A GODLIKE GAMING.png",
+            "model":"INTEL-CHIPSET"
+        },
+        {
+            "id": 3,
+            "name":"PRODUCTO 3",
+            "category":"motherboard",
+            "price":120000,
+            "quantity":30,
+            "image":"assets/images/box1.png",
+            "model":"AMD-CHIPSET"
+        },
+        {
+            "id": 4,
+            "name":"PRODUCTO 4",
+            "category":"motherboard",
+            "price":170000,
+            "quantity":15,
+            "image":"assets/images/box2.png",
+            "model":"AMD-CHIPSET"
+        },
+        {
+            "id": 5,
+            "name":"PRODUCTO 5",
+            "category":"motherboard",
+            "price":90000,
+            "quantity":22,
+            "image":"assets/images/box3.png",
+            "model":"INTEL-CHIPSET"
+        },
+        {
+            "id": 6,
+            "name":"PRODUCTO 6",
+            "category":"motherboard",
+            "price":30000,
+            "quantity":5,
+            "image":"assets/images/box4.png",
+            "model":"INTEL-CHIPSET"
+        },
+        {
+            "id": 7,
+            "name":"PRODUCTO 7",
+            "category":"graphics",
+            "price":40000,
+            "quantity":15,
+            "image":"assets/images/Radeon-RX-6900-XT-16G.png",
+            "model":"AMD-GPU"
+        },
+        {
+            "id": 8,
+            "name":"PRODUCTO 8",
+            "category":"graphics",
+            "price":60000,
+            "quantity":15,
+            "image":"assets/images/GEFORCE-RTX-3070-SUPRIM-X-8G-LHR.png",
+            "model":"NVIDIA-GPU"
+        }
+    ]    
+

@@ -1,16 +1,133 @@
-
+//Variables 
 const products = [];
 const shoppingCart = [];
-var filters_checkboxs = [];
-let $container = document.body.children[0];
+let filters_checkboxs = [];
 
-let $products = document.querySelector('.products');
+
+/* let $products = document.querySelector('.products');
 let cardProduct = document.getElementsByClassName('.container-card');
 let checkboxs = document.querySelectorAll('.filter-chkbox');
 let legends = document.querySelectorAll(".filter-legend");
 let lists = document.getElementsByClassName("filter-list");
 let body = document.querySelector("body");
+ */
 let searchBar = document.querySelector('.input-search ');
+
+//Template JQuery Estructura HTML
+
+let $container = $(`<div class="container"></div>`);
+let $row = $(`<div class="row"></div>`);
+let $header = $(`            
+            <header class="col-lg-12" > 
+            <nav class="nav  pr-0 pl-0">
+                <a  href="index.html"><img src="assets/images/brand.png" alt="logo image"></a>
+                <div class="bar-search">
+                    <span class="icon-search"><i class="fas fa-search"></i></span>
+                    <input class="input-search " type="search" placeholder="Buscar producto.."> </input>
+                </div>
+                <button class="btn-cart" type="button"><span><i class="fas fa-cart-arrow-down"></i> <i class="fas fa-arrow-right"></i></span></button>
+            </nav>
+            </header>
+        `);
+let $aside = $(`
+                <aside class="filter col-lg-3">       
+                    <form action="#" class="filter-form">
+                        <fieldset  class="filter-fieldset">
+                            <legend id="cat-motherboards" class="filter-legend ">
+                                <div class="filter-title">
+                                    <span>Motherboards</span>
+                                </div>    
+                            </legend>
+                            <ul id="motherboards" class="filter-list">
+                                <li class="filter-item filter-item--show">
+                                    <input class="filter-chkbox" type="checkbox" id="AMD Chipset" value="AMD Chipset">
+                                    <label class="filter-label" for="AMD Chipset">AMD Chipset</label>
+                                </li>
+                                <li class="filter-item filter-item--show">
+                                    <input class="filter-chkbox" type="checkbox" id="Intel Chipset" type="value" value="Intel Chipset">
+                                    <label class="filter-label" for="Intel Chipset">Intel Chipset</label>
+                                </li>
+                            </ul>
+                        </fieldset>
+                        <fieldset class="filter-fieldset">
+                            <legend id="cat-graphics" class="filter-legend">
+                                <div class="filter-title">
+                                    <span>Gráficas</span>
+                                </div>    
+                            </legend>
+                            <ul id="graphics" class="filter-list ">
+                                <li class="filter-item ">
+                                    <input class="filter-chkbox" type="checkbox"  id="AMD GPU" value="AMD GPU">
+                                    <label class="filter-label" for="AMD GPU">AMD GPU</label>
+                                </li>
+                                <li class="filter-item filter-item--show">
+                                    <input class="filter-chkbox" type="checkbox" id="NVIDIA GPU" value="NVIDIA GPU">
+                                    <label class="filter-label" for="NVIDIA GPU">NVIDIA GPU</label>
+                                </li>
+
+                            </ul>
+                        </fieldset>
+                        <fieldset  class="filter-fieldset">
+                            <legend id="cat-processors" class="filter-legend">
+                                <div class="filter-title">
+                                    <span>Procesadores</span>
+                                </div>    
+                            </legend>
+                            <ul  id="processors" class="filter-list ">
+                                <li class="filter-item filter-item--show">
+                                    <input class="filter-chkbox" type="checkbox" id="AMD" name="checkbox" value="AMD">
+                                    <label class="filter-label" for="AMD">AMD</label>
+                                </li>
+                                <li class="filter-item filter-item--show">
+                                    <input class="filter-chkbox" type="checkbox" id="Intel" name="checkbox" value="Intel">
+                                    <label class="filter-label" for="Intel">Intel</label>
+                                </li>
+                            </ul>
+                        </fieldset>
+                        <fieldset class="filter-fieldset">
+                            <legend id="cat-ram" class="filter-legend ">
+                                <div class="filter-title">
+                                    <span>Ram</span>
+                                </div>    
+                            </legend>
+                            <ul id="ram" class="filter-list ">
+                                <li class="filter-item filter-item--show">
+                                    <input class="filter-chkbox" type="checkbox" id="DDR4 8GB" value="DDR4 8GB">
+                                    <label class="filter-label" for="DDR4 8GB">DDR4 8GB</label>
+                                </li>
+                                <li class="filter-item filter-item--show">
+                                    <input class="filter-chkbox" type="checkbox" id="DDR4 16GB" value="DDR4 16GB">
+                                    <label class="filter-label" for="DDR4 16GB">DDR4 16GB</label>
+                                </li>
+                            </ul>
+                        </fieldset>
+                        <div class="filter-title--price ">
+                            <span>Precio</span>
+                            <div class="controller-price">
+                                <input class="input-price--min" type="text" placeholder="Mínimo">
+                                -
+                                <input class="input-price--max" type="text" placeholder="Máximo">
+                                <button class="btn-price" type="button" form="reset"><span><i class="fas fa-chevron-right"></i></span> </button>
+                            </div>
+                        </div>    
+                    </form>
+                </aside>
+            `);
+
+let $main = $(`
+                <main class="main col-lg-8">
+                </main>
+            `);
+
+let $products = $(`
+                    <div class="products row">
+                    </div>
+                `);
+
+
+let $productsNotFound = $(`<span class="title-notfound">No se encontraron productos...</span>`);
+
+
 
 /* Clases */
 class Stock {
@@ -20,162 +137,116 @@ class Stock {
         this.category = category;
         this.price = price;
         this.quantity = quantity;
-        this.image = image;
         this.model = model;
     }
 }
+
 //Productos
-products.push(new Stock(1,"PRODUCTO 1","motherboard",500000,10,"assets/images/X99A Godlike Gamingcarbon.png","INTEL-CHIPSET"));
-products.push(new Stock(2,"PRODUCTO 2","motherboard",230000,20,"assets/images/X99A GODLIKE GAMING.png","INTEL-CHIPSET"));
-products.push(new Stock(3,"PRODUCTO 3","motherboard",120000,30,"assets/images/box1.png","AMD-CHIPSET"));
-products.push(new Stock(4,"PRODUCTO 4","motherboard",170000,15,"assets/images/box2.png","AMD-CHIPSET"));
-products.push(new Stock(5,"PRODUCTO 5","motherboard",90000,22,"assets/images/box3.png","INTEL-CHIPSET"));
-products.push(new Stock(6,"PRODUCTO 6","motherboard",30000,5,"assets/images/box4.png","INTEL-CHIPSET"));
-products.push(new Stock(7,"PRODUCTO 7","graphics",30000,5,"assets/images/Radeon-RX-6900-XT-16G.png","AMD-GPU"));
-products.push(new Stock(8,"PRODUCTO 8","graphics",30000,5,"assets/images/GEFORCE-RTX-3070-SUPRIM-X-8G-LHR.png","NVIDIA-GPU"));
+products.push(new Stock(1,"PRODUCTO 1","motherboard",500000,10,"INTEL-CHIPSET"));
+products.push(new Stock(2,"PRODUCTO 2","motherboard",230000,20,"INTEL-CHIPSET"));
+products.push(new Stock(3,"PRODUCTO 3","motherboard",120000,30,"AMD-CHIPSET"));
+products.push(new Stock(4,"PRODUCTO 4","motherboard",170000,15,"AMD-CHIPSET"));
+products.push(new Stock(5,"PRODUCTO 5","motherboard",90000,22,"INTEL-CHIPSET"));
+products.push(new Stock(6,"PRODUCTO 6","motherboard",30000,5,"INTEL-CHIPSET"));
+products.push(new Stock(7,"PRODUCTO 7","graphics",30000,5,"AMD-GPU"));
+products.push(new Stock(8,"PRODUCTO 8","graphics",30000,5,"NVIDIA-GPU"));
+products.push(new Stock(8,"PRODUCTO 9","graphics",30000,5,"AMD-GPU"));
 
 
-
-//Eventos 
-   for(let i=0; legends.length>i;i++){
-    legends[i].addEventListener('click',(e)=>{
-        const t = e.target;
-        console.log(t,'target');
-
-        setTimeout(()=> {
-            t.classList.add("filter-legend--down");
-            lists[i].classList.add("filter-list--down");
-        }
-        ,30);
-        if( t.classList.contains("filter-legend--down")){
-            setTimeout(()=> {
-                t.classList.remove("filter-legend--down");
-                lists[i].classList.remove("filter-list--down");
-                lists[i].classList.remove("filter-list--up")
-                lists[i].classList.add("filter-list--up")
-            }
-            ,30);
-        }
-
-    });
-   }
-
-   //Templates 
-    //Template producto
-    const productTemplate = (prod)=>{
-        return(
-            `
-            <div data-model=${prod.id} class="product">
-                <div class="container-card">
-                    <img class="card-image" src="${prod.image}" alt="image product">
-                    <h2 class="title">${prod.name}</h2>
-                    <div class="card-price">
-                        <span class="title">$${prod.price}</span>
-                        <button data-id=${prod.id} class="btn-cart-product" type="button"><span><i class="fas fa-cart-plus"></i> <i class="fas fa-arrow-right"></i></span> </button>
-                    </div>
-                </div> 
-            </div> 
-            `
-        )
-    }
-    function showAllProducts(products){
-       
-            const htmlString = products
-            .map((prod)=>{
-                return (
-                `
-                <div data-model=${prod.id} class="product">
+//Cargar del DOM de la pagina
+$(  ()=>{
+    console.log( "El DOM esta listo");
+        $('body').prepend($container);
+        $('.container').prepend($row);
+        $('.container .row').prepend($header);
+        $('.container .row').append($aside);
+        $('.container .row').append($main);
+        $('main').prepend($products);
+        
+ 
+        //Funciones 
+        let createProduct =  (product, nodeParent) => {
+            //TOMAMOS EL NOMBRE Y LE SACAMOS LOS ESPACIOS PARA USARLO EN EL SRC DE LA FOTO */
+            let imageName = product.name.replaceAll(' ', '_')
+            //ESTRUCTURA BASICA DE PRODUCTO
+            let $product = $(`
+                <div data-model=${product.id} class="product col-md-4 col-lg-4">
                     <div class="container-card">
-                        <img class="card-image" src="${prod.image}" alt="image product">
-                        <h2 class="title">${prod.name}</h2>
+                        <img class="card-image" src="assets/images/${imageName}.png" alt="image product">
+                        <h2 class="title">${product.name}</h2>
                         <div class="card-price">
-                            <span class="title">$${prod.price}</span>
-                            <button data-id=${prod.id} class="btn-cart-product" type="button"><span><i class="fas fa-cart-plus"></i> <i class="fas fa-arrow-right"></i></span> </button>
+                            <span class="title">$${product.price}</span>
+                            <button data-id=${product.id} class="btn-cart-product" type="button"><span><i class="fas fa-cart-plus"></i> <i class="fas fa-arrow-right"></i></span> </button>
                         </div>
                     </div> 
                 </div> 
-            `);
-            }).join('');
-            $products.innerHTML = htmlString;
-           /*  for(product of products){
-                $products.innerHTML = productTemplate(product);
-            } */
-      
-      
+            `
+            );
+            $(nodeParent).append($product);
+          }
+         
+        //Animation
+        function rotate(){
+            $(`.filter-legend`).on('click',(e) => {
+                const t = e.target;
+             
+                setTimeout(()=> {
+                        $(`#${t.id}`)[0].classList.add('filter-legend--down');
+                    },
+                30);
+                if(t.classList.contains("filter-legend--down")){
+                        setTimeout(()=> {
+                            $(`#${t.id}`)[0].classList.remove('filter-legend--down');
+                            $(`#${t.id}`)[0].classList.add('filter-legend--up');
+                        }
+                    ,30);
+                }     
+            });
+        }
+        function slideCategory(){
+            $('.filter-legend').on('click',(e) => {
+                $(`#${e.target.parentElement.childNodes[3].id}`).slideToggle('fast');
+            })
+        }
 
-   }
-  
-    /* Buscador de productos */
-    function searchProduct(){
-        searchBar.addEventListener('keyup',(e)=>{
-
+        rotate();
+        slideCategory();     
+        //Buscador 
+        $('.input-search').keyup((e) =>{
             const searchString = e.target.value.toUpperCase();
-             const searchProd= products.filter((prod)=>{
+
+            const searchProd= products.filter((prod)=>{
                 return (
                     prod.name.includes(searchString) 
                 )
-       
             })
-            if(searchString !==null){
-                showAllProducts(searchProd);
+            
+            if(searchProd.length === 0){
+                $('.product').remove();
+                $products.prepend($productsNotFound);
             }else{
-                showAllProducts(products);
-            }
-           
-            console.log(searchProd,'busqueda');
-        })
-    }
-
-   /* Toma el valor del checkbox si esta checkeado o no y lo agrega a un array */
-
-   const filterProduct =(checkboxs)=>{
-    checkboxs.forEach((checkbox)=>{
-        checkbox.onclick = (e)=>{
-         
-            //La primera vez que entra sin filtros
-            var t = e.target
-            var valueFilter =t.value.toUpperCase().replaceAll(' ','-');
-          
-            if(t.checked){
-                const filterProducts = products.filter(p => p.model === valueFilter)
-                showAllProducts(filterProducts)
-                console.log(filterProducts)
-
+                $('.product').remove();
+                $('.title-notfound').remove();
+                for (const productFind of searchProd) {
+                    console.log(productFind.name.indexOf(searchString),'A VER')
+                    console.log(productFind)
+                        createProduct(productFind, $('.products'))
+                    
                 }
-        }      
-    })
-   }
-
-   showAllProducts(products)
-  
-    let btnsProducts = document.querySelectorAll('.product .btn-cart-product');
-
-    console.log(btnsProducts);
-        const saveOnLocal = (clave, valor) => {
-            localStorage.setItem(clave, valor);
-        }
-
- 
-    function addToLocalStorage (btnsProducts){
-            for(let i = 0 ; btnsProducts.length> i ; i++){
-                btnsProducts[i].addEventListener('click',()=>{
-                    let idProd = parseInt(btnsProducts[i].dataset.id);
-                    let product = products.filter(p => idProd === p.id );
-                    shoppingCart.push(product);
-                    let value = JSON.stringify(shoppingCart);
-                    saveOnLocal('cart', value);
-                })
             }
-    
+        })
 
-    }
-
-
-   
-    filterProduct(checkboxs)
-    searchProduct();
-    addToLocalStorage(btnsProducts);
-/*     console.log($products.children[0].dataset.model); */
-/*    filterProduct(checkboxs,filters_checkboxs); */
-
+        function main (products){
+            if(products.length > 1){
+                for(product of products){
+                    $('.title-notfound').remove();
+                    createProduct(product,$products);
+                }
+            }   
+            else{
+                $products.prepend($productsNotFound);
+            }
+        }
+        main(products);
+});
 
