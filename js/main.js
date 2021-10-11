@@ -152,9 +152,9 @@ let $cartProduct = $(`
                             <img class="cart-image" src="assets/images/.png" alt="image product">
                             <h3 class="title">Title Product</h3>
                             <div class="btns-product">
-                            <button>+</button>
-                            <input id="counter" type="number">
-                            <button>-</button>
+                                <button class="btn-add">+</button>
+                                <input class="counter-quantity" id="counter" type="number">
+                                <button class="btn-subtraction">-</button>
                             </div>
                         </div>
                     `)
@@ -162,7 +162,89 @@ let $shoppingCart = $(`
                         <div class="cart hide-cart">
                             <button class="btn-cart btn-cart--close" type="button"><span><i class="fas fa-times"></i></span></button>
                             <div class="title-cart">Mi pedido</div> 
-                            <div class="carts-products"></div>
+                            <div class="carts-products">
+                                <div class="cart-product">
+                                    <img class="cart-image" src="assets/images/PRODUCTO_4.png" alt="image product">
+                                    <h3 class="title">Title Product</h3>
+                                    <div class="btns-product">
+                                        <button>+</button>
+                                        <input id="counter" type="number">
+                                        <button>-</button>
+                                    </div>
+                                </div>
+                                <div class="cart-product">
+                                <img class="cart-image" src="assets/images/PRODUCTO_4.png" alt="image product">
+                                <h3 class="title">Title Product</h3>
+                                <div class="btns-product">
+                                    <button>+</button>
+                                    <input id="counter" type="number">
+                                    <button>-</button>
+                                </div>
+                            </div>
+                            <div class="cart-product">
+                            <img class="cart-image" src="assets/images/PRODUCTO_4.png" alt="image product">
+                            <h3 class="title">Title Product</h3>
+                            <div class="btns-product">
+                                <button>+</button>
+                                <input id="counter" type="number">
+                                <button>-</button>
+                            </div>
+                        </div>
+                        <div class="cart-product">
+                        <img class="cart-image" src="assets/images/PRODUCTO_4.png" alt="image product">
+                        <h3 class="title">Title Product</h3>
+                        <div class="btns-product">
+                            <button>+</button>
+                            <input id="counter" type="number">
+                            <button>-</button>
+                        </div>
+                    </div>
+                    <div class="cart-product">
+                    <img class="cart-image" src="assets/images/PRODUCTO_4.png" alt="image product">
+                    <h3 class="title">Title Product</h3>
+                    <div class="btns-product">
+                        <button class="btn-add">+</button>
+                        <input id="counter" type="number">
+                        <button class="btn-subtraction">-</button>
+                    </div>
+                </div>
+                <div class="cart-product">
+                <img class="cart-image" src="assets/images/PRODUCTO_4.png" alt="image product">
+                <h3 class="title">Title Product</h3>
+                <div class="btns-product">
+                    <button>+</button>
+                    <input id="counter" type="number">
+                    <button>-</button>
+                </div>
+            </div>
+            <div class="cart-product">
+            <img class="cart-image" src="assets/images/PRODUCTO_4.png" alt="image product">
+            <h3 class="title">Title Product</h3>
+            <div class="btns-product">
+                <button>+</button>
+                <input id="counter" type="number">
+                <button>-</button>
+            </div>
+        </div>
+        <div class="cart-product">
+        <img class="cart-image" src="assets/images/PRODUCTO_4.png" alt="image product">
+        <h3 class="title">Title Product</h3>
+        <div class="btns-product">
+            <button>+</button>
+            <input id="counter" type="number">
+            <button>-</button>
+        </div>
+    </div>
+    <div class="cart-product">
+    <img class="cart-image" src="assets/images/PRODUCTO_4.png" alt="image product">
+    <h3 class="title">Title Product</h3>
+    <div class="btns-product">
+        <button>+</button>
+        <input id="counter" type="number">
+        <button>-</button>
+    </div>
+</div>
+                            </div>
 
                             <button class="btn-cart-buy" type=submit> CONTINUAR </button>
                         
