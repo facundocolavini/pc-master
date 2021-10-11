@@ -44,6 +44,35 @@
 .btn-cart-product{
     @extend .btn-cart;
 }
-.btn-cart-product:active{
-    
+
+.btn-cart--close{
+    position:relative;
+    right: 0;
+    left: 1;
+    @extend .btn-cart;
+    span{
+        display: flex;
+        justify-content: flex-end;
+        font-size: 20px;
+    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn-cart-buy{
+    @extend .btn-cart;
+    place-items: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    background: rgba(185, 10, 10, 0.9);
+    box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.5);
+    border-radius: 0;
+    width: 94%;
+ 
+    color:$gray-400;
+    font-size: 25px;
+
 }

@@ -1,0 +1,62 @@
+@use '../custom' as *;
+@use '../components/animations' as *;
+
+
+
+
+.open-cart{
+    display: grid;
+    padding-top: 3rem ;
+    padding-left: 2rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5,auto);
+    position: absolute;
+    right: 0;
+    top: 0px;
+    z-index: 2;
+    width: 500px;
+    background: $black-2;
+    border-radius: 0;
+}
+.hide-cart{
+    display:none;
+}
+
+#slide{
+    width: 500px;
+    height: 100%;
+    background: $black-2;
+    right: 0; 
+}
+
+.title-cart{
+    position: relative;
+    font: {
+        family: $fontFamily;
+        style: normal;
+        weight: normal;
+        size: 30px;
+    }
+    line-height: 30px;
+    color: $gray-200;
+    margin:2rem 0;
+}
+
+.carts-products{
+    display: block;
+
+    height: 400px;
+    height: 400px;
+    overflow: auto;
+
+}
+.cart-product{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+.cart-image{
+    width: 113px;
+    height: 86px;
+    object-fit: contain;
+}

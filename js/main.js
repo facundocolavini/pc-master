@@ -40,7 +40,7 @@ let $header = $(`
                     <span class="icon-search"><i class="fas fa-search"></i></span>
                     <input class="input-search " type="search" placeholder="Buscar producto.."> </input>
                 </div>
-                <button class="btn-cart" type="button"><span><i class="fas fa-cart-arrow-down"></i> <i class="fas fa-arrow-right"></i></span></button>
+                <button  class="btn-cart" type="button"><span><i class="fas fa-cart-arrow-down"></i> <i class="fas fa-arrow-right"></i></span></button>
             </nav>
             </header>
         `);
@@ -147,8 +147,35 @@ let $products = $(`
                 `);
 
 let $productsNotFound = $(`<span class="title-notfound">No se encontraron productos...</span>`);
+let $cartProduct = $(`  
+                        <div class="cart-product">
+                            <img class="cart-image" src="assets/images/.png" alt="image product">
+                            <h3 class="title">Title Product</h3>
+                            <div class="btns-product">
+                            <button>+</button>
+                            <input id="counter" type="number">
+                            <button>-</button>
+                            </div>
+                        </div>
+                    `)
+let $shoppingCart = $(`
+                        <div class="cart hide-cart">
+                            <button class="btn-cart btn-cart--close" type="button"><span><i class="fas fa-times"></i></span></button>
+                            <div class="title-cart">Mi pedido</div> 
+                            <div class="carts-products"></div>
 
+                            <button class="btn-cart-buy" type=submit> CONTINUAR </button>
+                        
+                        </div>
 
+                    `)
+/* 
+
+       <button class="btn-cart btn-cart--close" type="button"><span><i class="fas fa-times"></i></span></button>
+                            <form onsubmit>
+                            <button class="btn-cart-buy" type=submit> CONTINUAR </button>
+                            </form>  
+*/
 
 /* Clases */
 class Stock {
@@ -191,7 +218,7 @@ $(()=>{
         $('.container .row').append($aside);
         $('.container .row').append($main);
         $('main').prepend($products);
-        
+        $('.container').prepend($shoppingCart);
  
         //Funciones 
         let createProduct =  (product, nodeParent) => {
@@ -249,28 +276,30 @@ $(()=>{
         let $inputMinPrice = $(`#min`);
         let $inputMaxPrice = $(`#max`);
         let $formFilterPrice = $(`#form-filter-price`);
-        const priceMin=(min)=>{
-            return products.filter(pmin => pmin.price <= min);
-        }
-        const priceMax=(max)=>{
-            return products.filter(pmax => pmax.price <= max);
-        }
-        $('aside').on('submit',$formFilterPrice,(e)=>{            
-            e.preventDefault();
-            let min = parseInt($inputMinPrice.val());
+
+        $('aside').on('submit',$formFilterPrice,(e)=>{
+            
+            e.preventDefault()
+            let min = parseInt( $inputMinPrice.val());
             let max = parseInt($inputMaxPrice.val());
             let rangePrice = [];
+            const priceMin=(min)=>{
+                return products.filter(pmin => pmin.price <= min);
+            }
+            const priceMax=(max)=>{
+                return products.filter(pmax => pmax.price <= max);
+            }
 
             rangePrice=priceMin(min).concat(priceMax(max))
             const deleteDuplicate = rangePrice.filter((p,index) =>{ return rangePrice.indexOf(p) === index})
             $('.products').html('');
-            $('.products');
+            $('.products')
      
             main(deleteDuplicate);
+           
+    
         }) 
-        
-
-      
+   
        //Animation Aside
         function rotate(){
             $(`.filter-legend`).on('click',(e) => {
@@ -313,7 +342,12 @@ $(()=>{
                 main(searchProd)
             }
         })
-
+        //Shopping Cart 
+        let btnCart = $('.btn-cart');
+        btnCart.on('click',(e)=>{
+            $('.cart').toggleClass('hide-cart');
+            $('.cart').toggleClass('open-cart');
+        })
         
 });
 
