@@ -1,24 +1,12 @@
+
+
+
 //Variables 
 const products = [];
 const shoppingCart = [];
-let filters_checkboxs = [];
-/* 
-
-let getProducts = () => {
-    return $.get(url, function(response, state) {
-        
-        if (state != "success") {
-            alert("Todo se daño :'( ");
-        } else {
-            for (const iterator of response) {
-                productos_data.push(iterator)
-            }
-        }
-    });
-} */
-
 let products_data = [];
 let url = 'js/products.json';
+
 
 /* PETICIONES http */
 
@@ -27,9 +15,8 @@ let url = 'js/products.json';
     return $.get(url, function(response, state) {
         
         if (state != "success") {
-            alert("Todo se daño :'( ");
+            console.log("Error")
         } else {
-            console.log(response)
             for (const iterator of response) {
                 products_data.push(iterator)
             }
@@ -39,13 +26,6 @@ let url = 'js/products.json';
 }
 
 
-/* let $products = document.querySelector('.products');
-let cardProduct = document.getElementsByClassName('.container-card');
-let checkboxs = document.querySelectorAll('.filter-chkbox');
-let legends = document.querySelectorAll(".filter-legend");
-let lists = document.getElementsByClassName("filter-list");
-let body = document.querySelector("body");
- */
 let searchBar = document.querySelector('.input-search ');
 
 //Template JQuery Estructura HTML
@@ -64,11 +44,10 @@ let $header = $(`
             </nav>
             </header>
         `);
-let $aside = $(`
 
+let $aside = $(`
                 <aside class="filter col-lg-3">    
-                    
-                    <form action="#" class="filter-form">
+                    <form  action="#" class="filter-form">
                         <fieldset  class="filter-fieldset">
                             <legend id="cat-motherboards" class="filter-legend ">
                                 <div class="filter-title">
@@ -112,12 +91,12 @@ let $aside = $(`
                             </legend>
                             <ul  id="processors" class="filter-list ">
                                 <li class="filter-item filter-item--show">
-                                    <input class="filter-chkbox" type="checkbox" id="AMD" name="checkbox" value="AMD">
-                                    <label class="filter-label" for="AMD">AMD</label>
+                                    <input class="filter-chkbox" type="checkbox" id="AMD processors" name="checkbox" value="AMD processors">
+                                    <label class="filter-label" for="AMD processors">AMD</label>
                                 </li>
                                 <li class="filter-item filter-item--show">
-                                    <input class="filter-chkbox" type="checkbox" id="Intel" name="checkbox" value="Intel">
-                                    <label class="filter-label" for="Intel">Intel</label>
+                                    <input class="filter-chkbox" type="checkbox" id="Intel processors" name="checkbox" value="Intel processors">
+                                    <label class="filter-label" for="Intel processors">Intel</label>
                                 </li>
                             </ul>
                         </fieldset>
@@ -138,13 +117,17 @@ let $aside = $(`
                                 </li>
                             </ul>
                         </fieldset>
+                    </form>
+                    <form onsubmit id="form-filter-price" class="filter-form ">
                         <div class="filter-title--price ">
                             <span>Precio</span>
                             <div class="controller-price">
-                                <input class="input-price--min" type="text" placeholder="Mínimo">
+                           
+                                <input id="min" class="input-price--min" type="number" placeholder="Mínimo">
                                 -
-                                <input class="input-price--max" type="text" placeholder="Máximo">
-                                <button class="btn-price" type="button" form="reset"><span><i class="fas fa-chevron-right"></i></span> </button>
+                                <input id="max" class="input-price--max" type="number" placeholder="Máximo">
+                                <button class="btn-price" type="submit" ><span><i class="fas fa-chevron-right"></i></span> </button>
+                            
                             </div>
                         </div>    
                     </form>
@@ -162,7 +145,6 @@ let $products = $(`
                     
                     </div>
                 `);
-
 
 let $productsNotFound = $(`<span class="title-notfound">No se encontraron productos...</span>`);
 
@@ -193,16 +175,15 @@ products.push(new Stock(8,"PRODUCTO 9","graphics",30000,5,"AMD-GPU")); */
 
 
 //Cargar del DOM de la pagina
-$(  ()=>{
+$(()=>{
     $.when(getProducts()).done( () => {
         $products.html('')
         for(const prod of products_data){   
-         
             products.push(new Stock(prod.id,prod.name,prod.category,prod.price,prod.quantity,prod.model))
             createProduct(prod,$products);
-        }  
-    })
-    console.log( products,"PROD");
+    }  
+})
+/*     console.log( products,"PROD"); */
     console.log( "El DOM esta listo");
         $('body').prepend($container);
         $('.container').prepend($row);
@@ -218,7 +199,7 @@ $(  ()=>{
             let imageName = product.name.replaceAll(' ', '_')
             //ESTRUCTURA BASICA DE PRODUCTO
             let $product = $(`
-                <div data-model=${product.id} class="product col-md-4 col-lg-4">
+                <div id=${product.model} class="product col-md-4 col-lg-4">
                     <div class="container-card">
                         <img class="card-image" src="assets/images/${imageName}.png" alt="image product">
                         <h2 class="title">${product.name}</h2>
@@ -229,36 +210,68 @@ $(  ()=>{
                     </div> 
                 </div> 
             `
-            );
-            $(nodeParent).append($product)
+            )
+            $(nodeParent).append($product).delay(100).fadeIn('fast');
           }
-        //Filter 
+          function main (products){
+            if(products.length > 0){
+                for(const product of products){
+                    $('.title-notfound').remove();
+                    $('.products').hide();
+                    createProduct(product,$products);
+                }
+            }else{
+                $products.prepend($productsNotFound);
+            }
+        }
+        
+        //Filter
+        const checkboxs =$('.filter-chkbox');
+        checkboxs.on('change',function(e) {
+            $('.products').html('');
+            let inputTarget = e.target;
+            let dataModel = inputTarget.value;
+            dataModel =dataModel.replaceAll(' ','-').toUpperCase()
+            let fill ; 
+            if(inputTarget.checked){
+                fill = products.filter((prod)=>{
+                    return (
+                        prod.model.includes(dataModel) 
+                    )
+                })
+                main(fill);
 
-        const listCheckboxs = $('.filter-list');
-        console.log(listCheckboxs[0].id)
-            listCheckboxs.each((checkbox)=>{      
-                $(`#${listCheckboxs[checkbox].id} `).on('click',function(e) {
-                    $("div .product").hide();
-                    $(`#${listCheckboxs[checkbox].id} :checkbox:checked`).each(function(e) {
-                       
-                        let childs = $(this).children(":input")
-                        let model = childs.prevObject[0].id.replaceAll(' ','-').toUpperCase();
-                        console.log( model);
+            }else{
+                main(products);
+            } 
+        });
+        //Filter Price 
+        let $inputMinPrice = $(`#min`);
+        let $inputMaxPrice = $(`#max`);
+        let $formFilterPrice = $(`#form-filter-price`);
+        const priceMin=(min)=>{
+            return products.filter(pmin => pmin.price <= min);
+        }
+        const priceMax=(max)=>{
+            return products.filter(pmax => pmax.price <= max);
+        }
+        $('aside').on('submit',$formFilterPrice,(e)=>{            
+            e.preventDefault();
+            let min = parseInt($inputMinPrice.val());
+            let max = parseInt($inputMaxPrice.val());
+            let rangePrice = [];
 
-                        let fill = products.filter(prodFill=> prodFill.model === model)
-                        console.log(childs,'sdsd')
-                        console.log(fill,'sdsd')
-                
-                        $('.product').remove();
-                        for (const productFill of fill) {
-                            createProduct(productFill, $('.products').fadeIn('slow'))
-                        }
-                        $('.product').fadeIn('fast').show();                        
-                    });
-                });
-            })
-            
-        //Animation
+            rangePrice=priceMin(min).concat(priceMax(max))
+            const deleteDuplicate = rangePrice.filter((p,index) =>{ return rangePrice.indexOf(p) === index})
+            $('.products').html('');
+            $('.products');
+     
+            main(deleteDuplicate);
+        }) 
+        
+
+      
+       //Animation Aside
         function rotate(){
             $(`.filter-legend`).on('click',(e) => {
                 const t = e.target;
@@ -287,38 +300,20 @@ $(  ()=>{
         //Buscador 
         $('.input-search').keyup((e) =>{
             const searchString = e.target.value.toUpperCase();
-
             const searchProd= products.filter((prod)=>{
                 return (
                     prod.name.includes(searchString) 
                 )
             })
-            
             if(searchProd.length === 0){
                 $('.product').remove();
                 $products.prepend($productsNotFound);
             }else{
-                $('.product').remove();
-                $('.title-notfound').remove();
-                for (const productFind of searchProd) {
-                    console.log(productFind.name.indexOf(searchString),'A VER')
-                    console.log(productFind)
-                    createProduct(productFind, $('.products'))
-                }
+                $('.products').html('')
+                main(searchProd)
             }
         })
 
-        function main (products){
-            if(products.length > 1){
-                for(product of products){
-                    $('.title-notfound').remove();
-                    createProduct(product,$products);
-                }
-            }   
-            else{
-                $products.prepend($productsNotFound);
-            }
-        }
-        main(products);
+        
 });
 

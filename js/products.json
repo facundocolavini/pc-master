@@ -5,7 +5,7 @@
             "category":"motherboard",
             "price": 500000,
             "quantity": 10,
-            "image": "assets/images/X99A Godlike Gamingcarbon.png",
+            
             "model": "INTEL-CHIPSET"
         },
         {
@@ -14,7 +14,7 @@
             "category":"motherboard",
             "price":230000,
             "quantity":20,
-            "image":"assets/images/X99A GODLIKE GAMING.png",
+        
             "model":"INTEL-CHIPSET"
         },
         {
@@ -23,7 +23,7 @@
             "category":"motherboard",
             "price":120000,
             "quantity":30,
-            "image":"assets/images/box1.png",
+         
             "model":"AMD-CHIPSET"
         },
         {
@@ -32,7 +32,7 @@
             "category":"motherboard",
             "price":170000,
             "quantity":15,
-            "image":"assets/images/box2.png",
+          
             "model":"AMD-CHIPSET"
         },
         {
@@ -41,7 +41,6 @@
             "category":"motherboard",
             "price":90000,
             "quantity":22,
-            "image":"assets/images/box3.png",
             "model":"INTEL-CHIPSET"
         },
         {
@@ -59,7 +58,6 @@
             "category":"graphics",
             "price":40000,
             "quantity":15,
-            "image":"assets/images/Radeon-RX-6900-XT-16G.png",
             "model":"AMD-GPU"
         },
         {
@@ -68,7 +66,6 @@
             "category":"graphics",
             "price":60000,
             "quantity":15,
-            "image":"assets/images/GEFORCE-RTX-3070-SUPRIM-X-8G-LHR.png",
             "model":"NVIDIA-GPU"
         }
     ]    

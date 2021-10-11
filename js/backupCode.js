@@ -1,3 +1,11 @@
+/* let $products = document.querySelector('.products');
+let cardProduct = document.getElementsByClassName('.container-card');
+let checkboxs = document.querySelectorAll('.filter-chkbox');
+let legends = document.querySelectorAll(".filter-legend");
+let lists = document.getElementsByClassName("filter-list");
+let body = document.querySelector("body");
+ */
+
 //Eventos 
 /*    for(let i=0; legends.length>i;i++){
     legends[i].addEventListener('click',(e)=>{
@@ -284,3 +292,33 @@ searchProduct();
     addToLocalStorage(btnsProducts); */
 /*     console.log($products.children[0].dataset.model); */
 /*    filterProduct(checkboxs,filters_checkboxs); */
+
+
+
+/* 
+else{ 
+                //DESCHEQUEADOS
+                console.log(dataModel)
+       
+                dataModel =dataModel.replaceAll(' ','-').toUpperCase()
+                inputChecked = inputChecked.filter(input =>input !== dataModel ? $(`${dataModel}`).remove() : input)
+                console.log(inputChecked)
+                fill = products.filter((prod)=>{
+                    return (
+                        prod.model.includes(dataModel)
+                    )
+                })
+                if(inputChecked.length>0){//HAY TODAVIA CHECKBOX CHEQUEADOS
+                    console.log(fill,'descheck')
+                    $('.product').remove()
+                    main(fill);
+                   
+                   
+                }else{
+                    $('.products').remove()
+                    main(products);
+                }
+              
+            }
+
+*/
