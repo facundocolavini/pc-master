@@ -150,11 +150,12 @@ let $productsNotFound = $(`<span class="title-notfound">No se encontraron produc
 let $cartProduct = $(`  
                         <div class="cart-product">
                             <img class="cart-image" src="assets/images/.png" alt="image product">
-                            <h3 class="title">Title Product</h3>
+                            <h3 class="title-product">Title Product</h3>
                             <div class="btns-product">
-                                <button class="btn-add">+</button>
+                                <button class="btn-add"><i class="fas fa-plus"></i></button>
                                 <input class="counter-quantity" id="counter" type="number">
-                                <button class="btn-subtraction">-</button>
+                                <button class="btn-subtraction"><i class="fas fa-minus"></i></button>
+                                <button class="btn-delete"><i class="fas fa-trash-alt"></i></button>
                             </div>
                         </div>
                     `)
@@ -165,89 +166,59 @@ let $shoppingCart = $(`
                             <div class="carts-products">
                                 <div class="cart-product">
                                     <img class="cart-image" src="assets/images/PRODUCTO_4.png" alt="image product">
-                                    <h3 class="title">Title Product</h3>
+                                    <h3 class="title-product">MOTHERBOARD X99 MSI</h3>
                                     <div class="btns-product">
-                                        <button>+</button>
-                                        <input id="counter" type="number">
-                                        <button>-</button>
+                                        <button class="btn-add"><i class="fas fa-plus"></i></button>
+                                        <input class="counter-quantity" id="counter" type="number">
+                                        <button class="btn-subtraction"><i class="fas fa-minus"></i></button>
+                                        <button class="btn-delete"><i class="fas fa-trash-alt"></i></button>
+                                        
+                                    </div>
+                          
+                                </div>
+                                <div class="cart-product">
+                                    <img class="cart-image" src="assets/images/PRODUCTO_4.png" alt="image product">
+                                     <h3 class="title-product">MOTHERBOARD X99 MSI</h3>
+                                    <div class="btns-product">
+                                        <button class="btn-add"><i class="fas fa-plus"></i></button>
+                                        <input class="counter-quantity" id="counter" type="number">
+                                        <button class="btn-subtraction"><i class="fas fa-minus"></i></button>
+                                        <button class="btn-delete"><i class="fas fa-trash-alt"></i></button>
                                     </div>
                                 </div>
                                 <div class="cart-product">
-                                <img class="cart-image" src="assets/images/PRODUCTO_4.png" alt="image product">
-                                <h3 class="title">Title Product</h3>
-                                <div class="btns-product">
-                                    <button>+</button>
-                                    <input id="counter" type="number">
-                                    <button>-</button>
+                                    <img class="cart-image" src="assets/images/PRODUCTO_4.png" alt="image product">
+                                     <h3 class="title-product">MOTHERBOARD X99 MSI</h3>
+                                    <div class="btns-product">
+                                        <button class="btn-add"><i class="fas fa-plus"></i></button>
+                                        <input class="counter-quantity" id="counter" type="number">
+                                        <button class="btn-subtraction"><i class="fas fa-minus"></i></button>
+                                        <button class="btn-delete"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </div>
+                                <div class="cart-product">
+                                    <img class="cart-image" src="assets/images/PRODUCTO_4.png" alt="image product">
+                                     <h3 class="title-product">MOTHERBOARD X99 MSI</h3>
+                                    <div class="btns-product">
+                                        <button class="btn-add"><i class="fas fa-plus"></i></button>
+                                        <input class="counter-quantity" id="counter" type="number">
+                                        <button class="btn-subtraction"><i class="fas fa-minus"></i></button>
+                          
+                                        <button class="btn-delete"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </div>
+                                <div class="cart-product">
+                                    <img class="cart-image" src="assets/images/PRODUCTO_4.png" alt="image product">
+                                     <h3 class="title-product">MOTHERBOARD X99 MSI</h3>
+                                        <div class="btns-product">
+                                        <button class="btn-add"><i class="fas fa-plus"></i></button>
+                                        <input class="counter-quantity" id="counter" type="number">
+                                        <button class="btn-subtraction"><i class="fas fa-minus"></i></button>
+                                        <button class="btn-delete"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="cart-product">
-                            <img class="cart-image" src="assets/images/PRODUCTO_4.png" alt="image product">
-                            <h3 class="title">Title Product</h3>
-                            <div class="btns-product">
-                                <button>+</button>
-                                <input id="counter" type="number">
-                                <button>-</button>
-                            </div>
-                        </div>
-                        <div class="cart-product">
-                        <img class="cart-image" src="assets/images/PRODUCTO_4.png" alt="image product">
-                        <h3 class="title">Title Product</h3>
-                        <div class="btns-product">
-                            <button>+</button>
-                            <input id="counter" type="number">
-                            <button>-</button>
-                        </div>
-                    </div>
-                    <div class="cart-product">
-                    <img class="cart-image" src="assets/images/PRODUCTO_4.png" alt="image product">
-                    <h3 class="title">Title Product</h3>
-                    <div class="btns-product">
-                        <button class="btn-add">+</button>
-                        <input id="counter" type="number">
-                        <button class="btn-subtraction">-</button>
-                    </div>
-                </div>
-                <div class="cart-product">
-                <img class="cart-image" src="assets/images/PRODUCTO_4.png" alt="image product">
-                <h3 class="title">Title Product</h3>
-                <div class="btns-product">
-                    <button>+</button>
-                    <input id="counter" type="number">
-                    <button>-</button>
-                </div>
-            </div>
-            <div class="cart-product">
-            <img class="cart-image" src="assets/images/PRODUCTO_4.png" alt="image product">
-            <h3 class="title">Title Product</h3>
-            <div class="btns-product">
-                <button>+</button>
-                <input id="counter" type="number">
-                <button>-</button>
-            </div>
-        </div>
-        <div class="cart-product">
-        <img class="cart-image" src="assets/images/PRODUCTO_4.png" alt="image product">
-        <h3 class="title">Title Product</h3>
-        <div class="btns-product">
-            <button>+</button>
-            <input id="counter" type="number">
-            <button>-</button>
-        </div>
-    </div>
-    <div class="cart-product">
-    <img class="cart-image" src="assets/images/PRODUCTO_4.png" alt="image product">
-    <h3 class="title">Title Product</h3>
-    <div class="btns-product">
-        <button>+</button>
-        <input id="counter" type="number">
-        <button>-</button>
-    </div>
-</div>
-                            </div>
-
                             <button class="btn-cart-buy" type=submit> CONTINUAR </button>
-                        
                         </div>
 
                     `)

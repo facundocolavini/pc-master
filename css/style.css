@@ -17450,7 +17450,7 @@ input[type=number] {
     right: 0; 
 }
  */
-.title-cart, .title {
+.title-cart, .title-product {
   position: relative;
   font-family: "Jura";
   font-style: normal;
@@ -17461,8 +17461,10 @@ input[type=number] {
   margin: 2rem 0;
 }
 
-.title {
-  font-size: 20px;
+.title-product {
+  font-size: 18px;
+  text-align: left;
+  margin: 10px;
 }
 
 .carts-products::-webkit-scrollbar {
@@ -17477,15 +17479,17 @@ input[type=number] {
 .carts-products {
   height: 500px;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .cart-product {
   display: flex;
   width: 100%;
   height: 100px;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   margin-bottom: 10px;
+  padding: 1rem 1rem;
   background: rgba(185, 10, 10, 0.9);
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -17494,6 +17498,70 @@ input[type=number] {
   width: 113px;
   height: 86px;
   object-fit: contain;
+}
+
+.btns-product {
+  position: relative;
+  width: 121px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 29px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.btn-add {
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  display: flex;
+  height: 29px;
+  width: 29px;
+  justify-content: center;
+  z-index: 1;
+  align-items: center;
+}
+.btn-add i {
+  font-size: 15px;
+}
+
+.btn-subtraction {
+  height: 29px;
+  width: 29px;
+  border: none;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 29px;
+}
+.btn-subtraction i {
+  font-size: 15px;
+}
+
+.counter-quantity {
+  position: relative;
+  padding: 5px;
+  margin: 0;
+  width: 50px;
+  height: 29px;
+  border: none;
+  background: transparent;
+}
+
+.btn-delete {
+  border: none;
+  position: absolute;
+  top: 30px;
+  height: 29px;
+  border: none;
+  background: transparent;
+  transition: 0.3s;
+}
+
+.btn-delete:hover i, .btn-subtraction:hover i, .btn-add:hover i {
+  color: #ced4da;
 }
 
 /*# sourceMappingURL=style.css.map */
