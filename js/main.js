@@ -3,7 +3,7 @@
 
 //Variables 
 const products = [];
-const shoppingCart = [];
+var cartProducts = [];
 let products_data = [];
 let url = 'js/products.json';
 
@@ -24,9 +24,6 @@ let url = 'js/products.json';
         }
     });
 }
-
-
-let searchBar = document.querySelector('.input-search ');
 
 //Template JQuery Estructura HTML
 
@@ -147,88 +144,23 @@ let $products = $(`
                 `);
 
 let $productsNotFound = $(`<span class="title-notfound">No se encontraron productos...</span>`);
-let $cartProduct = $(`  
-                        <div class="cart-product">
-                            <img class="cart-image" src="assets/images/.png" alt="image product">
-                            <h3 class="title-product">Title Product</h3>
-                            <div class="btns-product">
-                                <button class="btn-add"><i class="fas fa-plus"></i></button>
-                                <input class="counter-quantity" id="counter" type="number">
-                                <button class="btn-subtraction"><i class="fas fa-minus"></i></button>
-                                <button class="btn-delete"><i class="fas fa-trash-alt"></i></button>
-                            </div>
+
+/* let $cartProducts = $( `                            
+                        <div class="cart-products">
+                    
                         </div>
-                    `)
+                    `) */
 let $shoppingCart = $(`
-                        <div class="cart hide-cart">
+                        <div id="slide" class="cart hide-cart">
                             <button class="btn-cart btn-cart--close" type="button"><span><i class="fas fa-times"></i></span></button>
                             <div class="title-cart">Mi pedido</div> 
-                            <div class="carts-products">
-                                <div class="cart-product">
-                                    <img class="cart-image" src="assets/images/PRODUCTO_4.png" alt="image product">
-                                    <h3 class="title-product">MOTHERBOARD X99 MSI</h3>
-                                    <div class="btns-product">
-                                        <button class="btn-add"><i class="fas fa-plus"></i></button>
-                                        <input class="counter-quantity" id="counter" type="number">
-                                        <button class="btn-subtraction"><i class="fas fa-minus"></i></button>
-                                        <button class="btn-delete"><i class="fas fa-trash-alt"></i></button>
-                                        
-                                    </div>
-                          
-                                </div>
-                                <div class="cart-product">
-                                    <img class="cart-image" src="assets/images/PRODUCTO_4.png" alt="image product">
-                                     <h3 class="title-product">MOTHERBOARD X99 MSI</h3>
-                                    <div class="btns-product">
-                                        <button class="btn-add"><i class="fas fa-plus"></i></button>
-                                        <input class="counter-quantity" id="counter" type="number">
-                                        <button class="btn-subtraction"><i class="fas fa-minus"></i></button>
-                                        <button class="btn-delete"><i class="fas fa-trash-alt"></i></button>
-                                    </div>
-                                </div>
-                                <div class="cart-product">
-                                    <img class="cart-image" src="assets/images/PRODUCTO_4.png" alt="image product">
-                                     <h3 class="title-product">MOTHERBOARD X99 MSI</h3>
-                                    <div class="btns-product">
-                                        <button class="btn-add"><i class="fas fa-plus"></i></button>
-                                        <input class="counter-quantity" id="counter" type="number">
-                                        <button class="btn-subtraction"><i class="fas fa-minus"></i></button>
-                                        <button class="btn-delete"><i class="fas fa-trash-alt"></i></button>
-                                    </div>
-                                </div>
-                                <div class="cart-product">
-                                    <img class="cart-image" src="assets/images/PRODUCTO_4.png" alt="image product">
-                                     <h3 class="title-product">MOTHERBOARD X99 MSI</h3>
-                                    <div class="btns-product">
-                                        <button class="btn-add"><i class="fas fa-plus"></i></button>
-                                        <input class="counter-quantity" id="counter" type="number">
-                                        <button class="btn-subtraction"><i class="fas fa-minus"></i></button>
-                          
-                                        <button class="btn-delete"><i class="fas fa-trash-alt"></i></button>
-                                    </div>
-                                </div>
-                                <div class="cart-product">
-                                    <img class="cart-image" src="assets/images/PRODUCTO_4.png" alt="image product">
-                                     <h3 class="title-product">MOTHERBOARD X99 MSI</h3>
-                                        <div class="btns-product">
-                                        <button class="btn-add"><i class="fas fa-plus"></i></button>
-                                        <input class="counter-quantity" id="counter" type="number">
-                                        <button class="btn-subtraction"><i class="fas fa-minus"></i></button>
-                                        <button class="btn-delete"><i class="fas fa-trash-alt"></i></button>
-                                    </div>
-                                </div>
+                            <div class="cart-products">
+                    
                             </div>
                             <button class="btn-cart-buy" type=submit> CONTINUAR </button>
                         </div>
 
                     `)
-/* 
-
-       <button class="btn-cart btn-cart--close" type="button"><span><i class="fas fa-times"></i></span></button>
-                            <form onsubmit>
-                            <button class="btn-cart-buy" type=submit> CONTINUAR </button>
-                            </form>  
-*/
 
 /* Clases */
 class Stock {
@@ -242,28 +174,15 @@ class Stock {
     }
 }
 
-//Productos
-/* products.push(new Stock(1,"PRODUCTO 1","motherboard",500000,10,"INTEL-CHIPSET"));
-products.push(new Stock(2,"PRODUCTO 2","motherboard",230000,20,"INTEL-CHIPSET"));
-products.push(new Stock(3,"PRODUCTO 3","motherboard",120000,30,"AMD-CHIPSET"));
-products.push(new Stock(4,"PRODUCTO 4","motherboard",170000,15,"AMD-CHIPSET"));
-products.push(new Stock(5,"PRODUCTO 5","motherboard",90000,22,"INTEL-CHIPSET"));
-products.push(new Stock(6,"PRODUCTO 6","motherboard",30000,5,"INTEL-CHIPSET"));
-products.push(new Stock(7,"PRODUCTO 7","graphics",30000,5,"AMD-GPU"));
-products.push(new Stock(8,"PRODUCTO 8","graphics",30000,5,"NVIDIA-GPU"));
-products.push(new Stock(8,"PRODUCTO 9","graphics",30000,5,"AMD-GPU")); */
-
-
 //Cargar del DOM de la pagina
 $(()=>{
-    $.when(getProducts()).done( () => {
-        $products.html('')
-        for(const prod of products_data){   
-            products.push(new Stock(prod.id,prod.name,prod.category,prod.price,prod.quantity,prod.model))
-            createProduct(prod,$products);
-    }  
-})
-/*     console.log( products,"PROD"); */
+        $.when(getProducts()).done( () => {
+            $products.html('')
+            for(const prod of products_data){   
+                products.push(new Stock(prod.id,prod.name,prod.category,prod.price,prod.quantity,prod.model))
+                createProduct(prod,$products);
+        }  
+        })
     console.log( "El DOM esta listo");
         $('body').prepend($container);
         $('.container').prepend($row);
@@ -272,6 +191,7 @@ $(()=>{
         $('.container .row').append($main);
         $('main').prepend($products);
         $('.container').prepend($shoppingCart);
+
  
         //Funciones 
         let createProduct =  (product, nodeParent) => {
@@ -279,25 +199,49 @@ $(()=>{
             let imageName = product.name.replaceAll(' ', '_')
             //ESTRUCTURA BASICA DE PRODUCTO
             let $product = $(`
-                <div id=${product.model} class="product col-md-4 col-lg-4">
-                    <div class="container-card">
-                        <img class="card-image" src="assets/images/${imageName}.png" alt="image product">
-                        <h2 class="title">${product.name}</h2>
-                        <div class="card-price">
-                            <span class="title">$${product.price}</span>
-                            <button data-id=${product.id} class="btn-cart-product" type="button"><span><i class="fas fa-cart-plus"></i> <i class="fas fa-arrow-right"></i></span> </button>
-                        </div>
+                    <div id=${product.model} class="product col-md-4 col-lg-4">
+                        <div class="container-card">
+                            <img class="card-image" src="assets/images/${imageName}.png" alt="image product">
+                            <h2 class="title">${product.name}</h2>
+                            <div class="card-price">
+                                <span class="price title">$${product.price}</span>
+                                <button data-id=${product.id} class="btn-cart-product" type="button"><span><i class="fas fa-cart-plus"></i> <i class="fas fa-arrow-right"></i></span> </button>
+                            </div>
+                        </div> 
                     </div> 
-                </div> 
-            `
+                `
             )
             $(nodeParent).append($product).delay(100).fadeIn('fast');
           }
-          function main (products){
+
+        function createCartProduct (productsCart, nodeParent){
+            const $productC = productsCart
+            .map((prod)=>{
+                let imageName = prod.name.replaceAll(' ', '_');
+                return (
+                            `
+                                <div class="cart-product">
+                                    <img class="cart-image" src="assets/images/${imageName}.png" alt="image product">
+                                    <h3 class="title-product">${prod.name}</h3>
+                                    <div class="btns-product">
+                                        <button class="btn-add"><i class="fas fa-plus"></i></button>
+                                        <div class="counter-quantity" id="counter" type="number">${prod.quantity}</div>
+                                        <button class="btn-subtraction"><i class="fas fa-minus"></i></button>
+                                        <div class="prod-price" id="counter" >${prod.price}</div>
+                                        <button class="btn-delete"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </div>
+                            `
+                        );
+            }).join('');
+               console.log(nodeParent,'CART PRODUCT ARRAY')
+       
+            nodeParent.innerHTML= $productC;
+        }
+        function main (products){
             if(products.length > 0){
                 for(const product of products){
                     $('.title-notfound').remove();
-                    $('.products').hide();
                     createProduct(product,$products);
                 }
             }else{
@@ -342,15 +286,11 @@ $(()=>{
             const priceMax=(max)=>{
                 return products.filter(pmax => pmax.price <= max);
             }
-
             rangePrice=priceMin(min).concat(priceMax(max))
             const deleteDuplicate = rangePrice.filter((p,index) =>{ return rangePrice.indexOf(p) === index})
             $('.products').html('');
             $('.products')
-     
             main(deleteDuplicate);
-           
-    
         }) 
    
        //Animation Aside
@@ -376,7 +316,6 @@ $(()=>{
                 $(`#${e.target.parentElement.childNodes[3].id}`).slideToggle('fast');
             })
         }
-
         rotate();
         slideCategory();     
         //Buscador 
@@ -395,12 +334,42 @@ $(()=>{
                 main(searchProd)
             }
         })
-        //Shopping Cart 
+
+        //Identifier the button sell
+
+        $('.products').on('click' , e=>{
+            if(e.target.className ==='btn-cart-product') addToCart(e);
+        })
+        const addToCart= (e)=>{
+            const button = e.target;
+            const item = button.closest('.container-card');
+            const itemTitle = item.querySelector('.title').textContent;
+            const itemPrice = item.querySelector('.price').textContent;
+            const itemImg = item.querySelector('.card-image').src;
+
+            const newCartItem={
+                name: itemTitle,
+                price: itemPrice,
+                image: itemImg,
+                quantity: 1
+            }
+            addItemToCart(newCartItem)
+        }
+        function addItemToCart(newCartItem){
+            cartProducts.push(newCartItem);
+            createCartProduct(cartProducts,$shoppingCart.children()[2]);
+            
+        }
+        
+ 
+        //Shopping Cart         
+        //Open and close Cart
         let btnCart = $('.btn-cart');
         btnCart.on('click',(e)=>{
-            $('.cart').toggleClass('hide-cart');
-            $('.cart').toggleClass('open-cart');
+            $('.cart').toggleClass('hide-cart')
+            $('.cart').toggleClass('open-cart')
         })
         
+        //Add Producto To localStorage
 });
 

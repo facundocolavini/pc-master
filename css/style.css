@@ -17092,8 +17092,11 @@ readers do not read off random characters that represent icons */
 .btn-cart span, .btn-cart-buy span, .btn-cart--close span, .btn-cart-product span {
   position: absolute;
   display: flex;
+  z-index: -1;
 }
 .btn-cart span i, .btn-cart-buy span i, .btn-cart--close span i, .btn-cart-product span i {
+  position: relative;
+  pointer-events: none;
   color: #000;
   padding: 1px;
   line-height: 0;
@@ -17114,6 +17117,11 @@ readers do not read off random characters that represent icons */
   background: rgba(0, 0, 0, 0.7);
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   font-size: 0.8em;
+}
+
+.btn-cart-product {
+  position: relative;
+  z-index: 2;
 }
 
 .btn-cart--close {
@@ -17443,13 +17451,13 @@ input[type=number] {
   display: none;
 }
 
-/* #slide{
-    width: 500px;
-    height: 100%;
-    background: $black-2;
-    right: 0; 
+#slide {
+  width: 500px;
+  height: 100%;
+  background: #121010;
+  right: 0;
 }
- */
+
 .title-cart, .title-product {
   position: relative;
   font-family: "Jura";
@@ -17467,16 +17475,16 @@ input[type=number] {
   margin: 10px;
 }
 
-.carts-products::-webkit-scrollbar {
+.cart-products::-webkit-scrollbar {
   width: 10px;
 }
 
-.carts-products::-webkit-scrollbar-thumb {
+.cart-products::-webkit-scrollbar-thumb {
   background: #B90A0A;
   border-radius: 5px;
 }
 
-.carts-products {
+.cart-products {
   height: 500px;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -17487,9 +17495,9 @@ input[type=number] {
   width: 100%;
   height: 100px;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 10px;
-  padding: 1rem 1rem;
+  padding: 0.5rem;
   background: rgba(185, 10, 10, 0.9);
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -17500,10 +17508,12 @@ input[type=number] {
   object-fit: contain;
 }
 
-.btns-product {
+.btns-product, .prod-price {
   position: relative;
   width: 121px;
+  top: 0;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   height: 29px;
@@ -17514,13 +17524,12 @@ input[type=number] {
 .btn-add {
   border: none;
   background: transparent;
-  font-size: 20px;
   display: flex;
+  justify-content: center;
+  align-items: center;
   height: 29px;
   width: 29px;
-  justify-content: center;
   z-index: 1;
-  align-items: center;
 }
 .btn-add i {
   font-size: 15px;
@@ -17534,7 +17543,6 @@ input[type=number] {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 29px;
 }
 .btn-subtraction i {
   font-size: 15px;
@@ -17546,14 +17554,15 @@ input[type=number] {
   margin: 0;
   width: 50px;
   height: 29px;
+  text-align: center;
   border: none;
+  font-size: 20px;
+  color: #ced4da;
   background: transparent;
 }
 
 .btn-delete {
   border: none;
-  position: absolute;
-  top: 30px;
   height: 29px;
   border: none;
   background: transparent;
@@ -17562,6 +17571,16 @@ input[type=number] {
 
 .btn-delete:hover i, .btn-subtraction:hover i, .btn-add:hover i {
   color: #ced4da;
+}
+
+.prod-price {
+  border: none;
+  display: flex;
+  justify-content: center;
+  margin-top: 2px;
+  text-align: center;
+  color: #ced4da;
+  font-size: 20px;
 }
 
 /*# sourceMappingURL=style.css.map */

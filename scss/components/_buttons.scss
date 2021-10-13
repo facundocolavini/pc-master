@@ -14,7 +14,10 @@
     span{
         position: absolute;
         display: flex;
+        z-index: -1;
         i{
+            position: relative;
+            pointer-events: none;
             color:$black;
             padding: 1px;
             line-height:0;
@@ -43,6 +46,8 @@
 
 .btn-cart-product{
     @extend .btn-cart;
+    position: relative;
+    z-index: 2;
 }
 
 .btn-cart--close{
