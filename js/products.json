@@ -3,7 +3,7 @@
             "id": 1,
             "name": "PRODUCTO 1",
             "category":"motherboard",
-            "price": 500000,
+            "price": 60000,
             "quantity": 10,
             
             "model": "INTEL-CHIPSET"
@@ -12,7 +12,7 @@
             "id": 2,
             "name":"PRODUCTO 2",
             "category":"motherboard",
-            "price":230000,
+            "price":50000,
             "quantity":20,
         
             "model":"INTEL-CHIPSET"
@@ -21,7 +21,7 @@
             "id": 3,
             "name":"PRODUCTO 3",
             "category":"motherboard",
-            "price":120000,
+            "price":40000,
             "quantity":30,
          
             "model":"AMD-CHIPSET"
@@ -30,7 +30,7 @@
             "id": 4,
             "name":"PRODUCTO 4",
             "category":"motherboard",
-            "price":170000,
+            "price":45000,
             "quantity":15,
           
             "model":"AMD-CHIPSET"
@@ -39,7 +39,7 @@
             "id": 5,
             "name":"PRODUCTO 5",
             "category":"motherboard",
-            "price":90000,
+            "price":30000,
             "quantity":22,
             "model":"INTEL-CHIPSET"
         },
@@ -47,7 +47,7 @@
             "id": 6,
             "name":"PRODUCTO 6",
             "category":"motherboard",
-            "price":30000,
+            "price":35500,
             "quantity":5,
             "image":"assets/images/box4.png",
             "model":"INTEL-CHIPSET"
@@ -56,7 +56,7 @@
             "id": 7,
             "name":"PRODUCTO 7",
             "category":"graphics",
-            "price":40000,
+            "price":25350,
             "quantity":15,
             "model":"AMD-GPU"
         },
@@ -64,7 +64,7 @@
             "id": 8,
             "name":"PRODUCTO 8",
             "category":"graphics",
-            "price":60000,
+            "price":29000,
             "quantity":15,
             "model":"NVIDIA-GPU"
         }

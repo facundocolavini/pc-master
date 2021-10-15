@@ -322,3 +322,50 @@ else{
             }
 
 */
+
+
+
+
+
+
+
+
+
+
+
+/* -----------------------CARRITO----------------- */
+/*         //Add new item to my cart
+        function addItemToCart(newCartItem,itemPrice,itemId){  
+            const {id} = newCartItem;       
+            for(let i=0;i<cartProducts.length;i++){
+                if(cartProducts[i].id === id){
+                    cartProducts[i].quantity++;
+                    cartProducts[i].price = itemPrice * cartProducts[i].quantity;
+                    createCartProduct(cartProducts,$shoppingCart.children()[2]);
+
+                    totalMount(cartProducts);
+                    return null;
+                }
+          
+            }
+            cartProducts.push(newCartItem);
+            createCartProduct(cartProducts,$shoppingCart.children()[2]);
+
+            totalMount(cartProducts);
+        }
+
+        //Total price
+        const totalMount=(cartProducts)=>{
+            let contentTotal = document.querySelector('.content-total');
+            totalMountCart = cartProducts
+                                .map(p => p.price )
+                                .reduce ((a, e) => a + e)
+                               
+            renderTotal([totalMountCart],contentTotal)
+        }
+        console.log(cartProducts)
+        const deleteProductCart=(e,prod)=>{
+            console.log(e.target.id)
+            return  prod.filter(p => e.target.id !== p.id)
+
+        }   */

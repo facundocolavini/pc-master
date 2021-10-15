@@ -17092,7 +17092,6 @@ readers do not read off random characters that represent icons */
 .btn-cart span, .btn-cart-buy span, .btn-cart--close span, .btn-cart-product span {
   position: absolute;
   display: flex;
-  z-index: -1;
 }
 .btn-cart span i, .btn-cart-buy span i, .btn-cart--close span i, .btn-cart-product span i {
   position: relative;
@@ -17135,9 +17134,7 @@ readers do not read off random characters that represent icons */
 .btn-cart--close span {
   display: flex;
   justify-content: flex-end;
-  font-size: 20px;
 }
-
 .btn-cart-buy {
   place-items: center;
   position: relative;
@@ -17151,6 +17148,53 @@ readers do not read off random characters that represent icons */
   width: 94%;
   color: #ced4da;
   font-size: 25px;
+}
+
+.btn-delete {
+  border: none;
+  height: 29px;
+  border: none;
+  transition: 0.3s;
+  position: relative;
+  background: transparent;
+  z-index: 2;
+}
+.btn-delete i {
+  pointer-events: none;
+}
+
+.btn-add {
+  border: none;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 29px;
+  width: 29px;
+  transition: 0.3s;
+}
+.btn-add i {
+  font-size: 15px;
+  pointer-events: none;
+}
+
+.btn-subtraction {
+  height: 29px;
+  width: 29px;
+  border: none;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+}
+.btn-subtraction i {
+  font-size: 15px;
+  pointer-events: none;
+}
+
+.btn-delete:hover i, .btn-subtraction:hover i, .btn-add:hover i {
+  color: #ced4da;
 }
 
 .bar-search {
@@ -17436,7 +17480,6 @@ input[type=number] {
   padding-top: 3rem;
   padding-left: 2rem;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(5, auto);
   position: fixed;
   right: 0;
   top: 0px;
@@ -17458,7 +17501,7 @@ input[type=number] {
   right: 0;
 }
 
-.title-cart, .title-product {
+.title-cart, .content-total .total-mount, .content-total .total-title, .title-product {
   position: relative;
   font-family: "Jura";
   font-style: normal;
@@ -17485,7 +17528,7 @@ input[type=number] {
 }
 
 .cart-products {
-  height: 500px;
+  height: 400px;
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -17521,33 +17564,6 @@ input[type=number] {
   background: rgba(0, 0, 0, 0.6);
 }
 
-.btn-add {
-  border: none;
-  background: transparent;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 29px;
-  width: 29px;
-  z-index: 1;
-}
-.btn-add i {
-  font-size: 15px;
-}
-
-.btn-subtraction {
-  height: 29px;
-  width: 29px;
-  border: none;
-  background: transparent;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.btn-subtraction i {
-  font-size: 15px;
-}
-
 .counter-quantity {
   position: relative;
   padding: 5px;
@@ -17561,18 +17577,6 @@ input[type=number] {
   background: transparent;
 }
 
-.btn-delete {
-  border: none;
-  height: 29px;
-  border: none;
-  background: transparent;
-  transition: 0.3s;
-}
-
-.btn-delete:hover i, .btn-subtraction:hover i, .btn-add:hover i {
-  color: #ced4da;
-}
-
 .prod-price {
   border: none;
   display: flex;
@@ -17581,6 +17585,19 @@ input[type=number] {
   text-align: center;
   color: #ced4da;
   font-size: 20px;
+}
+
+.content-total {
+  display: flex;
+  justify-content: space-between;
+  width: 94%;
+  border-top: 1px solid rgba(226, 226, 226, 0.39);
+}
+.content-total .total-title {
+  margin: 0.5em 0;
+}
+.content-total .total-mount {
+  margin: 0.5em 0;
 }
 
 /*# sourceMappingURL=style.css.map */

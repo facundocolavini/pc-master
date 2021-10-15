@@ -1,14 +1,13 @@
-
-
-
-//Variables 
+//Global Variable 
 const products = [];
-var cartProducts = [];
+let productsOnCart = [];
+let totalMountCart = [];
 let products_data = [];
 let url = 'js/products.json';
 
 
-/* PETICIONES http */
+
+/* Request http */
 
 /* GET PRODUCTS*/
  const getProducts = () => {
@@ -145,21 +144,19 @@ let $products = $(`
 
 let $productsNotFound = $(`<span class="title-notfound">No se encontraron productos...</span>`);
 
-/* let $cartProducts = $( `                            
-                        <div class="cart-products">
-                    
-                        </div>
-                    `) */
 let $shoppingCart = $(`
+                    <div class="row">      
                         <div id="slide" class="cart hide-cart">
                             <button class="btn-cart btn-cart--close" type="button"><span><i class="fas fa-times"></i></span></button>
                             <div class="title-cart">Mi pedido</div> 
-                            <div class="cart-products">
-                    
+                            <div class="cart-products"></div>
+                            <div class="content-total">
+                                <span class="total-title">Subtotal:</span>
+                                <span class="total-mount">$0</span>
                             </div>
                             <button class="btn-cart-buy" type=submit> CONTINUAR </button>
                         </div>
-
+                    </div>  
                     `)
 
 /* Clases */
@@ -190,8 +187,11 @@ $(()=>{
         $('.container .row').append($aside);
         $('.container .row').append($main);
         $('main').prepend($products);
-        $('.container').prepend($shoppingCart);
-
+        $('.container').append($shoppingCart);
+        
+        //Varibales after the DOM load
+        let cartContent = document.querySelector(".cart-products");
+        
  
         //Funciones 
         let createProduct =  (product, nodeParent) => {
@@ -214,8 +214,10 @@ $(()=>{
             $(nodeParent).append($product).delay(100).fadeIn('fast');
           }
 
-        function createCartProduct (productsCart, nodeParent){
-            const $productC = productsCart
+/*         function createCartProduct (productsCart, nodeParent){
+           $(nodeParent).html('');
+    
+            let $productC = productsCart
             .map((prod)=>{
                 let imageName = prod.name.replaceAll(' ', '_');
                 return (
@@ -225,19 +227,32 @@ $(()=>{
                                     <h3 class="title-product">${prod.name}</h3>
                                     <div class="btns-product">
                                         <button class="btn-add"><i class="fas fa-plus"></i></button>
-                                        <div class="counter-quantity" id="counter" type="number">${prod.quantity}</div>
+                                        <div class="counter-quantity" id="counter">${prod.quantity}</div>
                                         <button class="btn-subtraction"><i class="fas fa-minus"></i></button>
-                                        <div class="prod-price" id="counter" >${prod.price}</div>
-                                        <button class="btn-delete"><i class="fas fa-trash-alt"></i></button>
+                                        <div class="prod-price" id="counter" >$${prod.price}</div>
+                                        <button class="btn-delete" id="${prod.id}"><i class="fas fa-trash-alt"></i></button>
                                     </div>
                                 </div>
                             `
                         );
             }).join('');
-               console.log(nodeParent,'CART PRODUCT ARRAY')
-       
-            nodeParent.innerHTML= $productC;
-        }
+            $(nodeParent).append($productC);   
+        } */
+
+/*         const renderTotal = (totalCart,nodeParent) =>{
+            nodeParent.innerHTML = ''
+            const $total = totalCart
+            .map((total)=>{
+                return (
+                            `     
+                                <span class="total-title">Subtotal:</span>
+                                <span class="total-mount">$${total}</span>
+                            `
+                        );
+            }).join('');
+            nodeParent.innerHTML= $total;
+        }  */
+
         function main (products){
             if(products.length > 0){
                 for(const product of products){
@@ -335,41 +350,121 @@ $(()=>{
             }
         })
 
-        //Identifier the button sell
-
-        $('.products').on('click' , e=>{
-            if(e.target.className ==='btn-cart-product') addToCart(e);
-        })
-        const addToCart= (e)=>{
-            const button = e.target;
-            const item = button.closest('.container-card');
-            const itemTitle = item.querySelector('.title').textContent;
-            const itemPrice = item.querySelector('.price').textContent;
-            const itemImg = item.querySelector('.card-image').src;
-
-            const newCartItem={
-                name: itemTitle,
-                price: itemPrice,
-                image: itemImg,
-                quantity: 1
-            }
-            addItemToCart(newCartItem)
-        }
-        function addItemToCart(newCartItem){
-            cartProducts.push(newCartItem);
-            createCartProduct(cartProducts,$shoppingCart.children()[2]);
-            
-        }
-        
- 
-        //Shopping Cart         
+        //Shopping Cart   
+              
         //Open and close Cart
         let btnCart = $('.btn-cart');
         btnCart.on('click',(e)=>{
             $('.cart').toggleClass('hide-cart')
             $('.cart').toggleClass('open-cart')
         })
+        //Identifier the button product
+        $('.products').on('click' , e=>{
+            if(e.target.className ==='btn-cart-product') addToCart(e);
+        })
+        //Add to cart
+        const addToCart= (e)=>{
+            const button = e.target;
+            const item = button.closest('.container-card');
+            const itemId =   parseInt(item.querySelector('.btn-cart-product').getAttribute("data-id"));
+            const itemTitle = item.querySelector('.title').textContent;
+            const itemPrice = parseInt(item.querySelector('.price').textContent.replace('$',''));
+            const itemImg = item.querySelector('.card-image').src;
+            const newCartItem={
+                id: itemId,
+                name: itemTitle,
+                price: itemPrice,
+                image: itemImg,
+                quantity: 1
+            }
+            addItemToCart(newCartItem);
+        }
+   
+        const  addItemToCart = (newCartItem)=> {
+            let {id} = newCartItem;
+            const inputQuantity = cartContent.getElementsByClassName('counter-quantity');
+            for(let i=0; i< productsOnCart.length;i++){
+                if(productsOnCart[i].id === id){
+                    productsOnCart[i].quantity++;
+                    let quantityValue = inputQuantity[i];
+                    quantityValue.textContent++;
+                    cartTotal();
+                    return null;
+                }
+            }
+            productsOnCart.push(newCartItem);
+            renderCart();
+        }
+        const renderCart = () =>{
+            cartContent.innerHTML = '';
+            productsOnCart.map(itemCart =>{
+                let cartProduct = document.createElement('div');
+                cartProduct.classList.add("cart-product");
+                let imageName = itemCart.name.replaceAll(' ', '_');
+                const content = 
+                    `
+                        <img class="cart-image" src="assets/images/${imageName}.png" alt="image product">
+                        <h3 class="title-product">${itemCart.name}</h3>
+                        <div class="btns-product">
+                            <button class="btn-add" id="${itemCart.id}" min="1"><i class="fas fa-plus"></i></button>
+                            <div class="counter-quantity" id="counter">${itemCart.quantity}</div>
+                            <button class="btn-subtraction" id="${itemCart.id}"><i class="fas fa-minus"></i></button>
+                            <div class="prod-price" id="counter" >$${itemCart.price}</div>
+                            <button class="btn-delete" id="${itemCart.id}"><i class="fas fa-trash-alt"></i></button>
+                        </div>
+                    `;
+                cartProduct.innerHTML = content;
+                cartContent.append(cartProduct);
+                cartProduct.querySelector(".btn-delete").addEventListener("click", removeProdCart)
+                cartProduct.querySelector(".btns-product").addEventListener("click", addProductCart)
+            })
+            cartTotal();
+        }
+        const cartTotal = ()=>{
+            let subTotal = 0;
+            const  cartTotal = document.querySelector('.total-mount');
+            productsOnCart.forEach(item=>{
+                subTotal += item.price *item.quantity;
+            });
+            cartTotal.innerHTML= 
+                                `
+                                    <span class="total-mount">$${subTotal}</span>
+                                `;
+        }
+        const removeProdCart = (e)=>{
+            const buttonDelete = e.target
+            const id = Number(e.target.id);
+            const productDelete = buttonDelete.closest('.cart-product');
+            productDelete.remove();
+            productsOnCart = productsOnCart.filter(p=> p.id !== id);
+            cartTotal();
+        }  
         
-        //Add Producto To localStorage
+        const addProductCart =(e)=>{
+            const add = e.target;
+            const inputQuantity = cartContent.getElementsByClassName('counter-quantity');
+            const id = Number (add.id);
+            const inputAdd = cartContent.getElementsByClassName('btn-add');
+            const inputSub = cartContent.getElementsByClassName('btn-subtraction');
+
+            for(let i=0;i<productsOnCart.length; i++){
+                let recentQuantity = Number(inputQuantity[i].textContent);
+                recentQuantity < 1 ? recentQuantity = 1 : recentQuantity;
+                if(productsOnCart[i].id === id && inputAdd[0].className === "btn-add"){
+                    console.log('ENTRO')
+                    productsOnCart[i].quantity = recentQuantity + 1;
+                    cartTotal();
+                    renderCart();
+                }else{
+                                   
+                    productsOnCart[i].quantity = recentQuantity--;
+                    cartTotal();
+                    renderCart();
+                }
+                
+
+            }
+      
+        }
 });
 
