@@ -441,13 +441,53 @@ $(()=>{
         }  
         
         const addProductCart =(e)=>{
-            const add = e.target;
+            const button = e.target;
+        
             const inputQuantity = cartContent.getElementsByClassName('counter-quantity');
-            const id = Number (add.id);
-            const inputAdd = cartContent.getElementsByClassName('btn-add');
-            const inputSub = cartContent.getElementsByClassName('btn-subtraction');
-
-            for(let i=0;i<productsOnCart.length; i++){
+            const id = Number (button.id);
+            const inputClick = button.className;
+            const product = button.closest('.cart-product');
+            const inputAdd = product.getElementsByClassName('btn-add')[0].className;
+            const inputSub = product.getElementsByClassName('btn-subtraction')[0].className;;
+            let currentAmount = parseInt(product.getElementsByClassName('counter-quantity')[0].textContent);
+            let mount = product.getElementsByClassName('counter-quantity')[0].textContent;
+            console.log(inputClick)
+            productsOnCart.forEach(product=>{
+                if(inputAdd === inputClick){
+                    if( product.id === id ){
+                        if( product.quantity < 1 || currentAmount < 1){
+                            currentAmount = 1;
+                            product.quantity =1;
+                            
+                        }else{
+                            console.log(product.quantity,'antes')
+                            product.quantity += 1;
+                            currentAmount += 1;
+                            console.log(product.quantity,'sumado')
+                           
+                        }
+                    }
+                }else{
+                    if(product.id === id ){
+                        if( product.quantity<= 1 && currentAmount <= 1){
+                            currentAmount = 1;
+                            product.quantity =1;
+                            mount = currentAmount;
+                           
+                        }else{
+                            console.log(product.quantity,'antes')
+                            product.quantity -=1;
+                            mount =  product.quantity ;
+                            console.log(product.quantity,'restado')
+                            console.log(product)
+                            
+                        }
+                    }
+                }
+                renderCart();
+         
+            });
+            /* for(let i=0;i<productsOnCart.length; i++){
                 let recentQuantity = Number(inputQuantity[i].textContent);
                 recentQuantity < 1 ? recentQuantity = 1 : recentQuantity;
                 if(productsOnCart[i].id === id && inputAdd[0].className === "btn-add"){
@@ -463,7 +503,8 @@ $(()=>{
                 }
                 
 
-            }
+            } */
+            console.log(productsOnCart);
       
         }
 });
