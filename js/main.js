@@ -191,8 +191,7 @@ $(()=>{
         
         //Varibales after the DOM load
         let cartContent = document.querySelector(".cart-products");
-        
- 
+
         //Funciones 
         let createProduct =  (product, nodeParent) => {
             //TOMAMOS EL NOMBRE Y LE SACAMOS LOS ESPACIOS PARA USARLO EN EL SRC DE LA FOTO */
@@ -213,45 +212,6 @@ $(()=>{
             )
             $(nodeParent).append($product).delay(100).fadeIn('fast');
           }
-
-/*         function createCartProduct (productsCart, nodeParent){
-           $(nodeParent).html('');
-    
-            let $productC = productsCart
-            .map((prod)=>{
-                let imageName = prod.name.replaceAll(' ', '_');
-                return (
-                            `
-                                <div class="cart-product">
-                                    <img class="cart-image" src="assets/images/${imageName}.png" alt="image product">
-                                    <h3 class="title-product">${prod.name}</h3>
-                                    <div class="btns-product">
-                                        <button class="btn-add"><i class="fas fa-plus"></i></button>
-                                        <div class="counter-quantity" id="counter">${prod.quantity}</div>
-                                        <button class="btn-subtraction"><i class="fas fa-minus"></i></button>
-                                        <div class="prod-price" id="counter" >$${prod.price}</div>
-                                        <button class="btn-delete" id="${prod.id}"><i class="fas fa-trash-alt"></i></button>
-                                    </div>
-                                </div>
-                            `
-                        );
-            }).join('');
-            $(nodeParent).append($productC);   
-        } */
-
-/*         const renderTotal = (totalCart,nodeParent) =>{
-            nodeParent.innerHTML = ''
-            const $total = totalCart
-            .map((total)=>{
-                return (
-                            `     
-                                <span class="total-title">Subtotal:</span>
-                                <span class="total-mount">$${total}</span>
-                            `
-                        );
-            }).join('');
-            nodeParent.innerHTML= $total;
-        }  */
 
         function main (products){
             if(products.length > 0){
@@ -413,7 +373,7 @@ $(()=>{
                             <button class="btn-delete" id="${itemCart.id}"><i class="fas fa-trash-alt"></i></button>
                         </div>
                     `;
-                cartProduct.innerHTML = content;
+                cartProduct.innerHTML = content
                 cartContent.append(cartProduct);
                 cartProduct.querySelector(".btn-delete").addEventListener("click", removeProdCart)
                 cartProduct.querySelector(".btns-product").addEventListener("click", addProductCart)
@@ -427,9 +387,10 @@ $(()=>{
                 subTotal += item.price *item.quantity;
             });
             cartTotal.innerHTML= 
-                                `
-                                    <span class="total-mount">$${subTotal}</span>
-                                `;
+                    `
+                        <span class="total-mount">$${subTotal}</span>
+                    `;
+            addStorage('myCart',JSON.stringify(productsOnCart))
         }
         const removeProdCart = (e)=>{
             const buttonDelete = e.target
@@ -442,29 +403,19 @@ $(()=>{
         
         const addProductCart =(e)=>{
             const button = e.target;
-        
-            const inputQuantity = cartContent.getElementsByClassName('counter-quantity');
             const id = Number (button.id);
             const inputClick = button.className;
             const product = button.closest('.cart-product');
-            const inputAdd = product.getElementsByClassName('btn-add')[0].className;
-            const inputSub = product.getElementsByClassName('btn-subtraction')[0].className;;
             let currentAmount = parseInt(product.getElementsByClassName('counter-quantity')[0].textContent);
-            let mount = product.getElementsByClassName('counter-quantity')[0].textContent;
-            console.log(inputClick)
             productsOnCart.forEach(product=>{
-                if(inputAdd === inputClick){
+                if('btn-add' === inputClick){
                     if( product.id === id ){
                         if( product.quantity < 1 || currentAmount < 1){
                             currentAmount = 1;
                             product.quantity =1;
                             
                         }else{
-                            console.log(product.quantity,'antes')
                             product.quantity += 1;
-                            currentAmount += 1;
-                            console.log(product.quantity,'sumado')
-                           
                         }
                     }
                 }else{
@@ -472,40 +423,26 @@ $(()=>{
                         if( product.quantity<= 1 && currentAmount <= 1){
                             currentAmount = 1;
                             product.quantity =1;
-                            mount = currentAmount;
                            
                         }else{
-                            console.log(product.quantity,'antes')
                             product.quantity -=1;
-                            mount =  product.quantity ;
-                            console.log(product.quantity,'restado')
-                            console.log(product)
-                            
                         }
                     }
-                }
-                renderCart();
-         
+                }       
             });
-            /* for(let i=0;i<productsOnCart.length; i++){
-                let recentQuantity = Number(inputQuantity[i].textContent);
-                recentQuantity < 1 ? recentQuantity = 1 : recentQuantity;
-                if(productsOnCart[i].id === id && inputAdd[0].className === "btn-add"){
-                    console.log('ENTRO')
-                    productsOnCart[i].quantity = recentQuantity + 1;
-                    cartTotal();
-                    renderCart();
-                }else{
-                                   
-                    productsOnCart[i].quantity = recentQuantity--;
-                    cartTotal();
-                    renderCart();
-                }
-                
-
-            } */
-            console.log(productsOnCart);
-      
+            renderCart();
         }
+        const addStorage=(key,value)=>{
+            sessionStorage.setItem(key,value);
+        } 
+        window.onload = ()=>{
+            const storage = JSON.parse(sessionStorage.getItem('myCart'));
+            if(storage){
+                productsOnCart = storage;
+                renderCart();
+            }
+        }
+       
+        
 });
 

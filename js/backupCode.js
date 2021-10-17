@@ -328,7 +328,44 @@ else{
 
 
 
+/*         function createCartProduct (productsCart, nodeParent){
+           $(nodeParent).html('');
+    
+            let $productC = productsCart
+            .map((prod)=>{
+                let imageName = prod.name.replaceAll(' ', '_');
+                return (
+                            `
+                                <div class="cart-product">
+                                    <img class="cart-image" src="assets/images/${imageName}.png" alt="image product">
+                                    <h3 class="title-product">${prod.name}</h3>
+                                    <div class="btns-product">
+                                        <button class="btn-add"><i class="fas fa-plus"></i></button>
+                                        <div class="counter-quantity" id="counter">${prod.quantity}</div>
+                                        <button class="btn-subtraction"><i class="fas fa-minus"></i></button>
+                                        <div class="prod-price" id="counter" >$${prod.price}</div>
+                                        <button class="btn-delete" id="${prod.id}"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </div>
+                            `
+                        );
+            }).join('');
+            $(nodeParent).append($productC);   
+        } */
 
+/*         const renderTotal = (totalCart,nodeParent) =>{
+            nodeParent.innerHTML = ''
+            const $total = totalCart
+            .map((total)=>{
+                return (
+                            `     
+                                <span class="total-title">Subtotal:</span>
+                                <span class="total-mount">$${total}</span>
+                            `
+                        );
+            }).join('');
+            nodeParent.innerHTML= $total;
+        }  */
 
 
 
